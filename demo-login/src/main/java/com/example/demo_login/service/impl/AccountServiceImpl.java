@@ -1,5 +1,6 @@
 package com.example.demo_login.service.impl;
 
+import com.example.demo_login.dto.response.AccountInformationBasic;
 import com.example.demo_login.entity.login.Account;
 import com.example.demo_login.repository.AccountRepository;
 import com.example.demo_login.service.AccountService;
@@ -35,6 +36,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account findUserByUsername(String username) {
         return accountRepository.findAccountByUsername(username);
+    }
+
+    @Override
+    public AccountInformationBasic findAccountByUserId(String id) {
+        return accountRepository.findByUserId(id);
     }
 
 
