@@ -22,4 +22,9 @@ public class Account extends BaseEntityWithUpdater {
     private String role;
     @Column(name = "is_deleted")
     private boolean isDeleted;
+
+    public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

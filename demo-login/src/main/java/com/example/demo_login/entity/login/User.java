@@ -26,5 +26,4 @@ public class User extends BaseEntityWithUpdater {
     private String addressId;
     @Column(name = "fullname_id")
     private String fullNameId;
-
 }
