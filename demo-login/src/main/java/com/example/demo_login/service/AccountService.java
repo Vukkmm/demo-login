@@ -6,4 +6,6 @@ public interface AccountService {
     Account save(String username, String password);
 
     void  update(String id, String username, String password);
+
+    Account findUserByUsername(String username);
 }

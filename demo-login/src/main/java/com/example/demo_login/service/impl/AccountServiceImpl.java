@@ -32,4 +32,10 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.update(id , username, passwordEncoder.encode(password));
     }
 
+    @Override
+    public Account findUserByUsername(String username) {
+        return accountRepository.findAccountByUsername(username);
+    }
+
+
 }
