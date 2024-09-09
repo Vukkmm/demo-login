@@ -25,4 +25,11 @@ public class AccountServiceImpl implements AccountService {
         return accountRepository.save(account);
     }
 
+    @Transactional
+    @Override
+    public void update(String id, String username, String password) {
+        log.info("update id : {}, username : {}, password : {}", id, username, password);
+        accountRepository.update(id , username, passwordEncoder.encode(password));
+    }
+
 }
