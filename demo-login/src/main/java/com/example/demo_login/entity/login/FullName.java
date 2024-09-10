@@ -20,4 +20,10 @@ public class FullName extends BaseEntityWithUpdater {
     private String lastName;
     @Column(name = "is_deleted")
     private boolean isDeleted;
+
+    public FullName(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
 }

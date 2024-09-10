@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
     @Transactional
     @Override
@@ -40,7 +40,7 @@ public class AddressServiceImpl implements AddressService {
                     i.getDistrict(),
                     i.getWard()));
         }
-        return addresses;
+        return addressRepository.saveAll(addresses);
     }
 
 
