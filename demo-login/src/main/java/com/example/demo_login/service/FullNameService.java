@@ -5,4 +5,6 @@ import com.example.demo_login.entity.login.FullName;
 
 public interface FullNameService {
     FullName save(FullNameRequest request);
+
+    void UpdateByIndex(FullNameRequest fullNameRequest);
 }
