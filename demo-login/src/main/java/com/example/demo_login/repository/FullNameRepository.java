@@ -1,6 +1,8 @@
 package com.example.demo_login.repository;
 
 import com.example.demo_login.dto.request.FullNameRequest;
+import com.example.demo_login.dto.response.AccountResponse;
+import com.example.demo_login.dto.response.FullNameResponse;
 import com.example.demo_login.entity.login.FullName;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,5 +18,11 @@ public interface FullNameRepository extends JpaRepository<FullName, String> {
          WHERE a.id = :id
         """)
     void updateFullNameByUserId(FullNameRequest fullNameRequest);
-
+    @Query("""
+        SELECT new com.example.demo_login.dto.response.FullNameResponse
+        (r.id,r.firstName, r.lastName)
+        FROM FullName r
+        WHERE r.id=:id AND r.isDeleted= false
+        """)
+    FullNameResponse detail(String id);
 }

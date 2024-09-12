@@ -9,5 +9,5 @@ public interface FullNameService {
 
     void UpdateByIndex(FullNameRequest fullNameRequest);
 
-
+    FullNameResponse detail(String id);
 }

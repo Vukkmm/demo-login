@@ -57,7 +57,7 @@ public class AddressServiceImpl implements AddressService {
         log.debug("(find) {}", id);
         Address address = addressRepository.findById(id).orElseThrow(AddressNotFoundException::new);
         if(address.isDeleted()) {
-            throw new AccountNotFoundException();
+            throw new AddressNotFoundException();
         }
         return address;
     }
