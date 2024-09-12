@@ -1,15 +1,14 @@
-package com.example.demo_login.dto.request;
+package com.example.demo_login.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor(staticName = "of")
+@AllArgsConstructor
 @NoArgsConstructor
-public class FullNameRequest {
+public class FullNameResponse {
+    private String id;
     private String firstName;
     private String lastName;
-
-
 }

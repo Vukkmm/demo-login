@@ -1,7 +1,9 @@
 package com.example.demo_login.service.impl;
 
 import com.example.demo_login.dto.response.AccountInformationBasic;
+import com.example.demo_login.dto.response.AccountResponse;
 import com.example.demo_login.entity.login.Account;
+import com.example.demo_login.exception.login.AccountNotFoundException;
 import com.example.demo_login.repository.AccountRepository;
 import com.example.demo_login.service.AccountService;
 import jakarta.transaction.Transactional;
@@ -41,6 +43,22 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountInformationBasic findAccountByUserId(String id) {
         return accountRepository.findByUserId(id);
+    }
+
+    @Override
+    public AccountResponse detail(String id) {
+        log.info("(detail) id : {}", id);
+        this.find(id);
+        return accountRepository.detail(id);
+    }
+
+    private Account find(String id) {
+        log.debug("(find) {}", id);
+        Account account = accountRepository.findById(id).orElseThrow(AccountNotFoundException::new);
+        if(account.isDeleted()) {
+            throw new AccountNotFoundException();
+        }
+        return account;
     }
 
 
