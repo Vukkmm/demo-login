@@ -18,16 +18,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserResponse create(UserRequest request) {
-        log.info("(create) request : {}", request);
-        User user = new User(
-                request.getAccountNumber(),
-                request.getEmail(),
-                request.getPhoneNumber(),
-                request.getAccountId(),
-                request.getAddressId(),
-                request.getFullNameId()
-                );
+    public UserResponse create(String accountNumber,
+                               String email,
+                               String phoneNumber,
+                               String accountId,
+                               String addressId,
+                               String fullNameId) {
+        log.info("(create) accountNumber : {}, email : {}, " +
+                "phoneNumber : {}, accountId : {}, " +
+                "addressId : {}, fullName : {}" ,
+                accountNumber, email, phoneNumber, accountId, accountId, fullNameId);
+        User user = new User(accountNumber, email, phoneNumber, accountId, addressId, fullNameId);
         userRepository.save(user);
         return getUserResponse(user);
     }

@@ -1,5 +1,6 @@
 package com.example.demo_login.repository;
 
+import com.example.demo_login.dto.request.AccountRequest;
 import com.example.demo_login.dto.response.AccountInformationBasic;
 import com.example.demo_login.dto.response.AccountResponse;
 import com.example.demo_login.entity.login.Account;
@@ -18,7 +19,7 @@ public interface AccountRepository extends JpaRepository<Account, String> {
          a.username = :username, a.password = :password 
          WHERE a.id = :id
         """)
-    void update(String  id, String username, String pass);
+    void update(String  id, String username, String password);
 
     @Query("""
         SELECT new com.example.demo_login.dto.response.AccountInformationBasic(u.id, a.username,a.password,a.role) from Account a

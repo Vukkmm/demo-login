@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface AddressService {
-    Address save(AddressRequest addressRequest);
+    AddressResponse create(String province, String district, String ward);
 
     List<Address> saveAll(List<AddressRequest> addressList);
 

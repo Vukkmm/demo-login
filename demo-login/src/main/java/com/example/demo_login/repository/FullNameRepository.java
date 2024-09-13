@@ -17,7 +17,7 @@ public interface FullNameRepository extends JpaRepository<FullName, String> {
          a.firstName = :firstName, a.lastName = :lastName
          WHERE a.id = :id
         """)
-    void updateFullNameByUserId(FullNameRequest fullNameRequest);
+    void updateFullNameByUserId(String id, String firstName, String lastName);
     @Query("""
         SELECT new com.example.demo_login.dto.response.FullNameResponse
         (r.id,r.firstName, r.lastName)

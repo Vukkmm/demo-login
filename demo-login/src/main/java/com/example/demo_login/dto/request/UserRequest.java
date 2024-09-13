@@ -11,7 +11,12 @@ public class UserRequest {
     private String accountNumber;
     private String email;
     private String phoneNumber;
-    private String accountId;
-    private String addressId;
-    private String fullNameId;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String province;
+    private String district;
+    private String ward;
+
 }

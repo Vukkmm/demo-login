@@ -1,5 +1,8 @@
 package com.example.demo_login.facade;
 
-public interface UserManagementFacade {
+import com.example.demo_login.dto.request.UserRequest;
+import com.example.demo_login.dto.response.UserResponse;
 
+public interface UserManagementFacade {
+    UserResponse create(UserRequest request);
 }

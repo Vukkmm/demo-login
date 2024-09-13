@@ -19,20 +19,22 @@ public class FullNameServiceImpl implements FullNameService {
 
     @Transactional
     @Override
-    public FullName save(FullNameRequest request) {
-        log.info("(save) request:{}", request);
-        return fullNameRepository.save(
-                new FullName(
-                        request.getFirstName(),
-                        request.getLastName()));
+    public FullNameResponse create(String firstName, String lastName) {
+        log.info("(create) firstName : {}, lastName : {} ", firstName, lastName);
+        FullName fullName = new FullName(firstName, lastName);
+        fullNameRepository.save(fullName);
+        return new FullNameResponse(
+                fullName.getId(),
+                fullName.getFirstName(),
+                fullName.getLastName()
+        );
     }
 
     @Transactional
     @Override
-    public void UpdateByIndex(FullNameRequest fullNameRequest) {
-        log.info("(updateByUserId) fullNameRequest:{}", fullNameRequest);
-        fullNameRepository.updateFullNameByUserId(
-                fullNameRequest);
+    public void UpdateByIndex(String id, String firstName, String lastName) {
+        log.info("(updateByUserId) id :{}, firstName : {}, lastName : {}", id, firstName, lastName);
+        fullNameRepository.updateFullNameByUserId(id, firstName, lastName);
     }
 
     @Override

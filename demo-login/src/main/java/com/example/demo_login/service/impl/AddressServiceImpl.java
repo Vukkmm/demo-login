@@ -23,13 +23,15 @@ public class AddressServiceImpl implements AddressService {
 
     @Transactional
     @Override
-    public Address save(AddressRequest addressRequest) {
-        log.info("(save) addressRequest:{}", addressRequest);
-        return addressRepository.save(
-                new Address(
-                addressRequest.getProvince(),
-                addressRequest.getDistrict(),
-                addressRequest.getWard()));
+    public AddressResponse create(String province, String district, String ward) {
+        log.info("(create) province : {}, district : {}, ward : {}", province, district, ward);
+         Address address = new Address(province, district, ward);
+         addressRepository.save(address);
+         return new AddressResponse(
+                 address.getId(),
+                 address.getProvince(),
+                 address.getDistrict(),
+                 address.getWard());
     }
 
     @Transactional

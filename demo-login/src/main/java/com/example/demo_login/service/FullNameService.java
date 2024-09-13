@@ -5,9 +5,9 @@ import com.example.demo_login.dto.response.FullNameResponse;
 import com.example.demo_login.entity.login.FullName;
 
 public interface FullNameService {
-    FullName save(FullNameRequest request);
+    FullNameResponse create(String firstName, String lastName);
 
-    void UpdateByIndex(FullNameRequest fullNameRequest);
+    void UpdateByIndex(String id, String firstName, String lastName);
 
     FullNameResponse detail(String id);
 }

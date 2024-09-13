@@ -19,6 +19,17 @@ public class UserResponse {
     private AddressResponse addressResponse;
     private FullNameResponse fullNameResponse;
 
+    public UserResponse(String id, String accountNumber, String email, String phoneNumber, AccountResponse accountResponse, AddressResponse addressResponse, FullNameResponse fullNameResponse) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.accountResponse = accountResponse;
+        this.addressResponse = addressResponse;
+        this.fullNameResponse = fullNameResponse;
+    }
+
+
     public UserResponse(String id,
                         String accountNumber,
                         String email,
@@ -34,4 +45,5 @@ public class UserResponse {
         this.addressId = addressId;
         this.fullNameId = fullNameId;
     }
+
 }
