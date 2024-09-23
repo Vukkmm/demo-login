@@ -1,17 +1,16 @@
-package com.example.demo_login.dto.response;
+package com.example.demo_login.dto.request;
+
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class AccountResponse {
-    private String id;
+@Builder
+public class AuthenticationRequest {
     private String username;
     private String password;
-    private String role;
 }

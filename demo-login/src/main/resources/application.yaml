@@ -1,0 +1,61 @@
+#spring.application.name=demo-login
+#server.port = 8991
+#
+### Spring DATASOURCE (DataSourceAutoConfiguration &amp; DataSourceProperties)
+#spring.datasource.driver-class-name=org.postgresql.Driver
+#spring.datasource.url=jdbc:postgresql://localhost:5432/demo-login
+#spring.datasource.username=postgres
+#spring.datasource.password=123456
+#spring.liquibase.change-log=classpath:db/master.xml
+#
+## The SQL dialect makes Hibernate generate better SQL for the chosen database
+#spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+#spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+#
+## Hibernate ddl auto (create, create-drop, validate, update)
+#spring.jpa.hibernate.ddl-auto = update
+
+#server:
+#  port: 8991
+#
+#
+#spring:
+#  datasource:
+#    url: "jdbc:postgresql://localhost:5432/demo-login"
+#    username: postgres
+#    password: 123456
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#
+#  liquibase:
+#    change-log: classpath:db/master.xml
+
+spring:
+  application:
+    name: demo-login
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/demo-login
+    username: postgres
+    password: 123456
+  liquibase:
+    change-log: classpath:db/master.xml
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: update
+
+jwt:
+  signerKey: "ddPUCkJy789aimj6bSUaxRus2sl2R7tiUv9v7T5TdHJbapegq0UxNDWsUqyi32qw"
+
+server:
+  port: 8991
+

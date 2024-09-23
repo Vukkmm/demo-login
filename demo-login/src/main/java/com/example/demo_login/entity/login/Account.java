@@ -2,11 +2,15 @@ package com.example.demo_login.entity.login;
 
 import com.example.demo_login.entity.base.BaseEntityWithUpdater;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +22,11 @@ public class Account extends BaseEntityWithUpdater {
     private String username;
     @Column(name = "password")
     private String password;
+
+
+//    @ElementCollection
     @Column(name = "role")
-    private String role="user";
+    private String roles ;
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
@@ -27,4 +34,5 @@ public class Account extends BaseEntityWithUpdater {
         this.username = username;
         this.password = password;
     }
+
 }

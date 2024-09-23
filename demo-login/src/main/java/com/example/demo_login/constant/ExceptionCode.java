@@ -11,6 +11,9 @@ public class ExceptionCode {
     public static final String ACCOUNT_NOT_FOUND_EXCEPTION = "com.example.demo-login.exception.login.AccountNotFoundException";
     public static final String ADDRESS_NOT_FOUND_EXCEPTION = "com.example.demo-login.exception.login.AddressNotFoundException";
     public static final String FULLNAME_NOT_FOUND_EXCEPTION = "com.example.demo-login.exception.login.FullNameNotFoundException";
+
+    public static final String ACCOUNT_AUTHENTICATED_EXCEPTION = "com.example.demo-login.exception.login.AccountAuthenticatedException";
+
 //    public static final String CATEGORY_NOT_FOUND_EXCEPTION = "com.example.LibraryManagement.exception.book.CategoryNotFoundException";
 //    public static final String BOOK_ALREADY_EXIST_EXCEPTION = "com.example.LibraryManagement.exception.book.BookAlreadyExistException";
 //    public static final String BOOK_NOT_FOUND_EXCEPTION = "com.example.LibraryManagement.exception.book.BookNotFoundException";

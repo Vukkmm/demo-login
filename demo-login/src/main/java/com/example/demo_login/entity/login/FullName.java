@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "fullnames")
 public class FullName extends BaseEntityWithUpdater {
-    @Column(name = "firstName")
+    @Column(name = "first_Name")
     private String firstName;
-    @Column(name = "lastName")
+    @Column(name = "last_Name")
     private String lastName;
     @Column(name = "is_deleted")
     private boolean isDeleted;
@@ -25,5 +25,4 @@ public class FullName extends BaseEntityWithUpdater {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
 }

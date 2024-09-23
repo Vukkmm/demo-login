@@ -1,6 +1,5 @@
 package com.example.demo_login.service.impl;
 
-import com.example.demo_login.dto.request.UserRequest;
 import com.example.demo_login.dto.response.UserResponse;
 import com.example.demo_login.entity.login.User;
 import com.example.demo_login.repository.UserRepository;
@@ -18,17 +17,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserResponse create(String accountNumber,
-                               String email,
+    public UserResponse create(String email,
                                String phoneNumber,
                                String accountId,
                                String addressId,
-                               String fullNameId) {
-        log.info("(create) accountNumber : {}, email : {}, " +
+                               String fullNameId
+                               ) {
+        log.info("(create) email : {}, " +
                 "phoneNumber : {}, accountId : {}, " +
                 "addressId : {}, fullName : {}" ,
-                accountNumber, email, phoneNumber, accountId, accountId, fullNameId);
-        User user = new User(accountNumber, email, phoneNumber, accountId, addressId, fullNameId);
+                email, phoneNumber, accountId, accountId, fullNameId);
+        User user = new User(email,phoneNumber,accountId,addressId,fullNameId);
         userRepository.save(user);
         return getUserResponse(user);
     }
@@ -37,11 +36,11 @@ public class UserServiceImpl implements UserService {
         log.debug("(getUserResponse) user : {}", user);
         return new UserResponse(
                 user.getId(),
-                user.getAccountNumber(),
                 user.getEmail(),
                 user.getPhoneNumber(),
                 user.getAccountId(),
                 user.getAddressId(),
-                user.getFullNameId());
+                user.getFullNameId()
+        );
     }
 }

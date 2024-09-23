@@ -9,14 +9,10 @@
             <column name="id" type="VARCHAR(255)">
                 <constraints primaryKey="true" nullable="false"  />
             </column>
-
-            <column name="accountNumber" type="VARCHAR(200)">
-                <constraints nullable="false" />
-            </column>
             <column name="email" type="VARCHAR(200)">
                 <constraints nullable="false" />
             </column>
-            <column name="phoneNumber" type="VARCHAR(255)">
+            <column name="phone_number" type="VARCHAR(255)">
                 <constraints nullable="false" />
             </column>
             <column name="account_id" type="VARCHAR(255)">

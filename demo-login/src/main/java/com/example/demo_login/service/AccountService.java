@@ -8,11 +8,11 @@ import com.example.demo_login.entity.login.Account;
 public interface AccountService {
     AccountResponse create(String username, String password);
 
-    void  update(String id, AccountRequest accountRequest);
-
-    Account findUserByUsername(String username);
-
-    AccountInformationBasic findAccountByUserId(String id);
-
-    AccountResponse detail(String id);
+//    void  update(String id, AccountRequest accountRequest);
+//
+//    Account findUserByUsername(String username);
+//
+//    AccountInformationBasic findAccountByUserId(String id);
+//
+//    AccountResponse detail(String id);
 }

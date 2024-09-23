@@ -9,10 +9,10 @@
             <column name="id" type="VARCHAR(255)">
                 <constraints primaryKey="true" nullable="false"  />
             </column>
-            <column name="firstName" type="VARCHAR(255)">
-                <constraints nullable="false" />
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints  />
             </column>
-            <column name="lastName" type="VARCHAR(255)">
+            <column name="last_name" type="VARCHAR(255)">
                 <constraints nullable="false" />
             </column>
             <column name="is_deleted" type="BOOLEAN" defaultValueBoolean="false"/>

@@ -14,11 +14,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntityWithUpdater {
-    @Column(name = "accountNumber")
-    private String accountNumber;
     @Column(name = "email")
     private String email;
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "account_id")
     private String accountId;

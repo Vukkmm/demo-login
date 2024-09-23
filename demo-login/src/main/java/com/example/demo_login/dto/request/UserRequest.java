@@ -1,22 +1,24 @@
 package com.example.demo_login.dto.request;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @AllArgsConstructor(staticName = "of")
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserRequest {
-    private String accountNumber;
-    private String email;
-    private String phoneNumber;
-    private String username;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String province;
-    private String district;
-    private String ward;
+    String email;
+    String phoneNumber;
+    String username;
+    String password;
+    String province;
+    String district;
+    String ward;
+    String firstName;
+    String lastName;
 
 }

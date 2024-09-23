@@ -1,6 +1,5 @@
 package com.example.demo_login.service.impl;
 
-import com.example.demo_login.dto.request.FullNameRequest;
 import com.example.demo_login.dto.response.FullNameResponse;
 import com.example.demo_login.entity.login.FullName;
 import com.example.demo_login.exception.login.FullNameNotFoundException;
