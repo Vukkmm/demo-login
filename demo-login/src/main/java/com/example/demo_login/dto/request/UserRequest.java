@@ -1,5 +1,6 @@
 package com.example.demo_login.dto.request;
 
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,9 @@ import lombok.experimental.FieldDefaults;
 public class UserRequest {
     String email;
     String phoneNumber;
+    @Size(min = 6)
     String username;
+    @Size(min = 8)
     String password;
     String province;
     String district;
