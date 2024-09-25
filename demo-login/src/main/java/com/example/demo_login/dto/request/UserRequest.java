@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 public class UserRequest {
     String email;
     String phoneNumber;
-    @Size(min = 6)
+    @Size(min = 6, max = 50, message = "Username must be between 3 and 50 characters")
     String username;
     @Size(min = 8)
     String password;
