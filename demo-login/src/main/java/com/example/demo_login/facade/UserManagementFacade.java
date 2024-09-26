@@ -10,4 +10,6 @@ public interface UserManagementFacade {
     UserFacadeResponse createUser(UserRequest request);
 
     List<UserFacadeResponse> getList();
+
+    UserFacadeResponse getDetail(String id);
 }

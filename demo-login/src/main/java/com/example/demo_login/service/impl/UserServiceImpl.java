@@ -1,7 +1,10 @@
 package com.example.demo_login.service.impl;
 
 import com.example.demo_login.dto.response.UserResponse;
+import com.example.demo_login.entity.login.FullName;
 import com.example.demo_login.entity.login.User;
+import com.example.demo_login.exception.login.FullNameNotFoundException;
+import com.example.demo_login.exception.login.UserNotFoundException;
 import com.example.demo_login.mapper.UserMapper;
 import com.example.demo_login.repository.UserRepository;
 import com.example.demo_login.service.UserService;
@@ -48,6 +51,21 @@ public class UserServiceImpl implements UserService {
             listResponse.add(response);
         }
         return listResponse;
+    }
+
+    @Override
+    public UserResponse detail(String id) {
+        log.info("(detail) id : {}", id);
+        this.find(id);
+        return userRepository.detail(id);
+    }
+
+    private void find(String id) {
+        log.debug("(find) {}", id);
+        User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+        if(user.isDeleted()) {
+            throw new FullNameNotFoundException();
+        }
     }
 
     private UserResponse getUserResponse(User user) {

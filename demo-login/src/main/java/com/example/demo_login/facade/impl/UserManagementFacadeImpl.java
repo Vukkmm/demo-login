@@ -40,17 +40,7 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
                 addressResponse.getId(),
                 fullNameResponse.getId());
 
-        return new UserFacadeResponse(
-                userResponse.getId(),
-                userResponse.getEmail(),
-                userResponse.getPhoneNumber(),
-                userResponse.getAccountId(),
-                userResponse.getAddressId(),
-                userResponse.getFullNameId(),
-                accountResponse,
-                addressResponse,
-                fullNameResponse
-        );
+        return set(userResponse, accountResponse,addressResponse, fullNameResponse);
 
     }
 
@@ -68,6 +58,16 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
             list.add(response);
         }
         return list;
+    }
+
+    @Override
+    public UserFacadeResponse getDetail(String id) {
+        log.info("(getDetail) id : {}", id);
+        UserResponse userResponse = userService.detail(id);
+        AddressResponse addressResponse = addressService.detail(userResponse.getAddressId());
+        AccountResponse accountResponse  = accountService.detail(userResponse.getAccountId());
+        FullNameResponse fullNameResponse = fullNameService.detail(userResponse.getFullNameId());
+        return set(userResponse, accountResponse, addressResponse, fullNameResponse);
     }
 
     private UserFacadeResponse set(UserResponse userResponse,

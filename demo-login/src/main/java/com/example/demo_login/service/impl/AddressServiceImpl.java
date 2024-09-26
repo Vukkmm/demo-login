@@ -58,13 +58,13 @@ public class AddressServiceImpl implements AddressService {
         return addressRepository.detail(id);
     }
 
-    private Address find(String id) {
+    private void find(String id) {
         log.debug("(find) {}", id);
         Address address = addressRepository.findById(id).orElseThrow(AddressNotFoundException::new);
         if(address.isDeleted()) {
             throw new AddressNotFoundException();
         }
-        return address;
+
     }
 
 

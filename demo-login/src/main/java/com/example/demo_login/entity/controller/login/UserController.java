@@ -16,8 +16,7 @@ import java.util.List;
 
 import static com.example.demo_login.constant.CommonConstant.DEFAULT_LANGUAGE;
 import static com.example.demo_login.constant.CommonConstant.LANGUAGE;
-import static com.example.demo_login.constant.MessageCodeConstant.CREATE_USER;
-import static com.example.demo_login.constant.MessageCodeConstant.GET_LIST_USER;
+import static com.example.demo_login.constant.MessageCodeConstant.*;
 
 @RestController
 @RequestMapping("api/v1/users")
@@ -48,6 +47,18 @@ public class UserController {
         return ResponseGeneral.ofSuccess(
                 messageService.getMessage(GET_LIST_USER, language),
                 userManagementFacade.getList()
+        );
+    }
+
+    @GetMapping("{id}")
+    public ResponseGeneral<UserFacadeResponse> getUser(
+            @PathVariable String id,
+            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+    ) {
+        log.info("(getUser) id : {}", id);
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(GET_DETAIL_USER, language),
+                userManagementFacade.getDetail(id)
         );
     }
 }

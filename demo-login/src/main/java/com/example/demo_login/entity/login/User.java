@@ -24,4 +24,14 @@ public class User extends BaseEntityWithUpdater {
     private String addressId;
     @Column(name = "fullname_id")
     private String fullNameId;
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
+    public User(String email, String phoneNumber, String accountId, String addressId, String fullNameId) {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.accountId = accountId;
+        this.addressId = addressId;
+        this.fullNameId = fullNameId;
+    }
 }

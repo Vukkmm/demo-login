@@ -1,8 +1,7 @@
 package com.example.demo_login.service.impl;
 
-import com.example.demo_login.dto.response.AccountResponse;
+
 import com.example.demo_login.dto.response.FullNameResponse;
-import com.example.demo_login.entity.login.Account;
 import com.example.demo_login.entity.login.FullName;
 import com.example.demo_login.exception.login.FullNameNotFoundException;
 import com.example.demo_login.mapper.UserMapper;
@@ -62,13 +61,12 @@ public class FullNameServiceImpl implements FullNameService {
         return fullNameRepository.detail(id);
     }
 
-    private FullName find(String id) {
+    private void find(String id) {
         log.debug("(find) {}", id);
         FullName fullName = fullNameRepository.findById(id).orElseThrow(FullNameNotFoundException::new);
         if(fullName.isDeleted()) {
             throw new FullNameNotFoundException();
         }
-        return fullName;
     }
 
 

@@ -1,11 +1,8 @@
 package com.example.demo_login.service.impl;
 
-import com.example.demo_login.dto.request.AccountRequest;
-import com.example.demo_login.dto.response.AccountInformationBasic;
+
 import com.example.demo_login.dto.response.AccountResponse;
-import com.example.demo_login.dto.response.UserResponse;
 import com.example.demo_login.entity.login.Account;
-import com.example.demo_login.entity.login.User;
 import com.example.demo_login.enums.Role;
 import com.example.demo_login.exception.login.AccountNotFoundException;
 import com.example.demo_login.mapper.UserMapper;
@@ -18,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Slf4j
@@ -55,7 +51,17 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountResponse detail(String id) {
+        log.info("(detail) id : {}", id);
+        this.find(id);
         return accountRepository.detail(id);
+    }
+
+    private void find(String id) {
+        log.debug("(find) {}", id);
+        Account account = accountRepository.findById(id).orElseThrow(AccountNotFoundException::new);
+        if(account.isDeleted()) {
+            throw new AccountNotFoundException();
+        }
     }
 
 //    @Override
