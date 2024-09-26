@@ -3,7 +3,6 @@ package com.example.demo_login.entity.controller.login;
 import com.example.demo_login.dto.base.ResponseGeneral;
 import com.example.demo_login.dto.request.UserRequest;
 import com.example.demo_login.dto.response.UserFacadeResponse;
-import com.example.demo_login.dto.response.UserResponse;
 import com.example.demo_login.facade.UserManagementFacade;
 import com.example.demo_login.message.MessageService;
 import jakarta.validation.Valid;
