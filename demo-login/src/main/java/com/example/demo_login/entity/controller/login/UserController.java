@@ -11,9 +11,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 import static com.example.demo_login.constant.CommonConstant.DEFAULT_LANGUAGE;
 import static com.example.demo_login.constant.CommonConstant.LANGUAGE;
 import static com.example.demo_login.constant.MessageCodeConstant.CREATE_USER;
+import static com.example.demo_login.constant.MessageCodeConstant.GET_LIST_USER;
 
 @RestController
 @RequestMapping("api/v1/users")
@@ -34,5 +38,16 @@ public class UserController {
         return ResponseGeneral.ofCreated(
                 messageService.getMessage(CREATE_USER, language),
                 userManagementFacade.createUser(request));
+    }
+
+    @GetMapping
+    public ResponseGeneral<List<UserFacadeResponse>> getList(
+            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+    ) {
+        log.info("(getList");
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(GET_LIST_USER, language),
+                userManagementFacade.getList()
+        );
     }
 }

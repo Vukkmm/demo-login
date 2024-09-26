@@ -13,6 +13,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -36,6 +39,7 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
                 accountResponse.getId(),
                 addressResponse.getId(),
                 fullNameResponse.getId());
+
         return new UserFacadeResponse(
                 userResponse.getId(),
                 userResponse.getEmail(),
@@ -46,8 +50,40 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
                 accountResponse,
                 addressResponse,
                 fullNameResponse
-                );
+        );
 
+    }
+
+    @Override
+    public List<UserFacadeResponse> getList() {
+        log.info("(getList)");
+        List<UserResponse> listUser = userService.getList();
+        List<UserFacadeResponse> list = new ArrayList<>();
+        for (UserResponse i : listUser
+             ) {
+            AccountResponse accountResponse = accountService.detail(i.getAccountId());
+            AddressResponse addressResponse = addressService.detail(i.getAddressId());
+            FullNameResponse fullNameResponse = fullNameService.detail(i.getFullNameId());
+            UserFacadeResponse response = set(i, accountResponse, addressResponse, fullNameResponse);
+            list.add(response);
+        }
+        return list;
+    }
+
+    private UserFacadeResponse set(UserResponse userResponse,
+                                   AccountResponse accountResponse,
+                                   AddressResponse addressResponse,
+                                   FullNameResponse fullNameResponse) {
+        return new UserFacadeResponse(
+                userResponse.getId(),
+                userResponse.getEmail(),
+                userResponse.getPhoneNumber(),
+                userResponse.getAccountId(),
+                userResponse.getAddressId(),
+                userResponse.getFullNameId(),
+                accountResponse,
+                addressResponse,
+                fullNameResponse);
     }
 
 

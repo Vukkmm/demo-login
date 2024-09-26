@@ -1,10 +1,10 @@
 package com.example.demo_login.service.impl;
 
-import com.example.demo_login.dto.request.AddressRequest;
+
 import com.example.demo_login.dto.response.AddressResponse;
 import com.example.demo_login.entity.login.Address;
-import com.example.demo_login.exception.login.AccountNotFoundException;
 import com.example.demo_login.exception.login.AddressNotFoundException;
+import com.example.demo_login.mapper.UserMapper;
 import com.example.demo_login.repository.AddressRepository;
 import com.example.demo_login.service.AddressService;
 import jakarta.transaction.Transactional;
@@ -20,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
     private final AddressRepository addressRepository;
+    private final UserMapper mapper;
 
     @Transactional
     @Override
@@ -34,19 +35,21 @@ public class AddressServiceImpl implements AddressService {
                  address.getWard());
     }
 
-    @Transactional
     @Override
-    public List<Address> saveAll(List<AddressRequest> addressList) {
-        log.info("(saveAll) addressList:{}", addressList);
-        List<Address> addresses = new ArrayList<>();
-        for (AddressRequest i: addressList
-             ) {
-            addresses.add(new Address(i.getProvince(),
-                    i.getDistrict(),
-                    i.getWard()));
+    public List<AddressResponse> getList() {
+        log.info("(getList)");
+        List<Address> list = addressRepository.findAll();
+        List<AddressResponse> listResponse = new ArrayList<>();
+        for (Address i  : list
+        ) {
+            AddressResponse response = mapper.toAddressResponse(i);
+            listResponse.add(response);
         }
-        return addressRepository.saveAll(addresses);
+        return listResponse;
     }
+
+
+
 
     @Override
     public AddressResponse detail(String id) {

@@ -60,7 +60,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public IntrospectResponse verifyToken(IntrospectRequest request)
             throws JOSEException, ParseException {
-
+        log.info("Verifying Token: {}",request);
         var token = request.getToken();
 
         // chuyen  hoa ve dang byte roi MACVerifier se verify nó
@@ -87,7 +87,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .issuer("vuvuive.com")
                 .issueTime(new Date())
                 .expirationTime(new Date(
-                        Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
+                        Instant.now().plus(2, ChronoUnit.HOURS).toEpochMilli()
                 ))
                 .claim("customClaim", "Custom")
                 .build();

@@ -10,7 +10,7 @@ import java.util.List;
 public interface AddressService {
     AddressResponse create(String province, String district, String ward);
 
-    List<Address> saveAll(List<AddressRequest> addressList);
+    List<AddressResponse> getList();
 
     AddressResponse detail(String id);
 }

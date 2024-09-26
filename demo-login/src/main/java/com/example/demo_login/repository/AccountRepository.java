@@ -37,11 +37,11 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 //
 //    Account findAccountByUsername(String username);
 //
-//    @Query("""
-//        SELECT new com.example.demo_login.dto.response.AccountResponse
-//        (r.id,r.username, r.password, r.roles)
-//        FROM Account r
-//        WHERE r.id=:id AND r.isDeleted= false
-//        """)
-//    AccountResponse detail(String id);
+    @Query("""
+        SELECT new com.example.demo_login.dto.response.AccountResponse
+        (r.id,r.username, r.password, r.roles)
+        FROM Account r
+       WHERE r.id=:id AND r.isDeleted= false
+       """)
+  AccountResponse detail(String id);
 }

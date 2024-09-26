@@ -3,9 +3,12 @@ package com.example.demo_login.service.impl;
 import com.example.demo_login.dto.request.AccountRequest;
 import com.example.demo_login.dto.response.AccountInformationBasic;
 import com.example.demo_login.dto.response.AccountResponse;
+import com.example.demo_login.dto.response.UserResponse;
 import com.example.demo_login.entity.login.Account;
+import com.example.demo_login.entity.login.User;
 import com.example.demo_login.enums.Role;
 import com.example.demo_login.exception.login.AccountNotFoundException;
+import com.example.demo_login.mapper.UserMapper;
 import com.example.demo_login.repository.AccountRepository;
 import com.example.demo_login.service.AccountService;
 import jakarta.transaction.Transactional;
@@ -14,7 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -22,6 +27,7 @@ import java.util.HashSet;
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserMapper mapper;
 
 
     @Transactional
@@ -32,6 +38,24 @@ public class AccountServiceImpl implements AccountService {
         account.setRoles(Role.USER.name());
         accountRepository.save(account);
         return new AccountResponse(account.getId(), account.getUsername(), account.getPassword(),account.getRoles());
+    }
+
+    @Override
+    public List<AccountResponse> getList() {
+        log.info("(getList)");
+        List<Account> list = accountRepository.findAll();
+        List<AccountResponse> listResponse = new ArrayList<>();
+        for (Account account : list
+        ) {
+            AccountResponse response = mapper.toAccountResponse(account);
+            listResponse.add(response);
+        }
+        return listResponse;
+    }
+
+    @Override
+    public AccountResponse detail(String id) {
+        return accountRepository.detail(id);
     }
 
 //    @Override

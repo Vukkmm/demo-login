@@ -6,6 +6,8 @@ import com.example.demo_login.dto.response.AddressResponse;
 import com.example.demo_login.dto.response.FullNameResponse;
 import com.example.demo_login.dto.response.UserResponse;
 
+import java.util.List;
+
 public interface UserService {
     UserResponse create(String email,
                         String phoneNumber,
@@ -13,4 +15,5 @@ public interface UserService {
                         String addressId,
                         String fullNameId);
 
+    List<UserResponse> getList();
 }
