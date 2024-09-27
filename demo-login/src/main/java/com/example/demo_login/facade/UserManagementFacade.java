@@ -12,4 +12,6 @@ public interface UserManagementFacade {
     List<UserFacadeResponse> getList();
 
     UserFacadeResponse getDetail(String id);
+
+    UserFacadeResponse getMyInfo();
 }

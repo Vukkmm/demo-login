@@ -35,13 +35,13 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 ////        """)
 ////    AccountInformationBasic findByUserId(String  id);
 //
-//    Account findAccountByUsername(String username);
-//
+   Account  findAccountByUsername(String username);
+
     @Query("""
         SELECT new com.example.demo_login.dto.response.AccountResponse
         (r.id,r.username, r.password, r.roles)
         FROM Account r
        WHERE r.id=:id AND r.isDeleted= false
        """)
-  AccountResponse detail(String id);
+    AccountResponse detail(String id);
 }

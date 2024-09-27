@@ -15,4 +15,12 @@ public interface UserRepository extends JpaRepository<User, String> {
     """)
     UserResponse detail(String id);
 
+
+    @Query("""
+        SELECT new com.example.demo_login.dto.response.UserResponse
+        (r.id, r.email, r.phoneNumber, r.accountId, r.addressId, r.fullNameId)
+        from User r
+        WHERE r.accountId=:accountId AND r.isDeleted = false 
+    """)
+    UserResponse findByAccountId(String accountId);
 }

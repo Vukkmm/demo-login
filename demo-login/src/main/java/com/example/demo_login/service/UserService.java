@@ -19,4 +19,8 @@ public interface UserService {
     List<UserResponse> getList();
 
     UserResponse detail(String id);
+
+    UserResponse getByAccountId(String id);
+
+
 }

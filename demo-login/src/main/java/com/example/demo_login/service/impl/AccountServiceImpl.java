@@ -56,6 +56,13 @@ public class AccountServiceImpl implements AccountService {
         return accountRepository.detail(id);
     }
 
+    @Override
+    public AccountResponse getByUsername(String username) {
+        log.info("(getByUsername) username : {}", username);
+        Account account = accountRepository.findAccountByUsername(username);
+        return mapper.toAccountResponse(account);
+    }
+
     private void find(String id) {
         log.debug("(find) {}", id);
         Account account = accountRepository.findById(id).orElseThrow(AccountNotFoundException::new);
@@ -63,6 +70,8 @@ public class AccountServiceImpl implements AccountService {
             throw new AccountNotFoundException();
         }
     }
+
+
 
 //    @Override
 //    public void update(String id, AccountRequest accountRequest) {

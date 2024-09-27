@@ -68,4 +68,15 @@ public class UserController {
                 userManagementFacade.getDetail(id)
         );
     }
+
+    @GetMapping("/myInfo")
+    private ResponseGeneral<UserFacadeResponse> getMyInfo(
+            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+    ) {
+        log.info("getMyInfo");
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(GET_MY_INFO, language),
+                userManagementFacade.getMyInfo()
+        );
+    }
 }

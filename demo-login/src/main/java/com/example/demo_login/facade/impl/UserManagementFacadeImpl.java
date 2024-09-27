@@ -3,6 +3,7 @@ package com.example.demo_login.facade.impl;
 
 import com.example.demo_login.dto.request.UserRequest;
 import com.example.demo_login.dto.response.*;
+import com.example.demo_login.exception.login.AccountNotFoundException;
 import com.example.demo_login.facade.UserManagementFacade;
 import com.example.demo_login.service.AccountService;
 import com.example.demo_login.service.AddressService;
@@ -11,6 +12,9 @@ import com.example.demo_login.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -44,6 +48,7 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
 
     }
 
+    @PreAuthorize("hasRole('ADMIN')") // CHECK BEFORE CALL METHOD 
     @Override
     public List<UserFacadeResponse> getList() {
         log.info("(getList)");
@@ -60,6 +65,8 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
         return list;
     }
 
+//    @PostAuthorize("hasRole('ADMIN')") // CHECK AFTER CALL METHOD
+    @PostAuthorize("returnObject.username == authentication.name") // CHECK AFTER CALL METHOD
     @Override
     public UserFacadeResponse getDetail(String id) {
         log.info("(getDetail) id : {}", id);
@@ -67,6 +74,20 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
         AddressResponse addressResponse = addressService.detail(userResponse.getAddressId());
         AccountResponse accountResponse  = accountService.detail(userResponse.getAccountId());
         FullNameResponse fullNameResponse = fullNameService.detail(userResponse.getFullNameId());
+        return set(userResponse, accountResponse, addressResponse, fullNameResponse);
+    }
+
+    @Override
+    public UserFacadeResponse getMyInfo() {
+        log.info("(getMyInfo)");
+        var context =  SecurityContextHolder.getContext();
+        String name = context.getAuthentication().getName();
+
+        AccountResponse accountResponse = accountService.getByUsername(name);
+        UserResponse userResponse = userService.getByAccountId(accountResponse.getId());
+        AddressResponse addressResponse = addressService.detail(userResponse.getAddressId());
+        FullNameResponse fullNameResponse = fullNameService.detail(userResponse.getFullNameId());
+
         return set(userResponse, accountResponse, addressResponse, fullNameResponse);
     }
 
