@@ -102,6 +102,7 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
                 userResponse.getAccountId(),
                 userResponse.getAddressId(),
                 userResponse.getFullNameId(),
+                accountResponse.getUsername(),
                 accountResponse,
                 addressResponse,
                 fullNameResponse);
