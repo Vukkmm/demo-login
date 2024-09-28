@@ -15,4 +15,9 @@ public class UserResponse {
     private String addressId;
     private String fullNameId;
 
+    public UserResponse(String accountId, String addressId, String fullNameId) {
+        this.accountId = accountId;
+        this.addressId = addressId;
+        this.fullNameId = fullNameId;
+    }
 }

@@ -3,7 +3,6 @@ package com.example.demo_login.facade.impl;
 
 import com.example.demo_login.dto.request.UserRequest;
 import com.example.demo_login.dto.response.*;
-import com.example.demo_login.exception.login.AccountNotFoundException;
 import com.example.demo_login.facade.UserManagementFacade;
 import com.example.demo_login.service.AccountService;
 import com.example.demo_login.service.AddressService;
@@ -89,6 +88,16 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
         FullNameResponse fullNameResponse = fullNameService.detail(userResponse.getFullNameId());
 
         return set(userResponse, accountResponse, addressResponse, fullNameResponse);
+    }
+
+    @Override
+    public UserFacadeResponse update(String id, UserRequest request) {
+        log.info("(update) request : {}", request);
+
+        UserResponse userResponse = userService.updateUser(id, request.getEmail(), request.getPhoneNumber());
+
+
+        return null;
     }
 
     private UserFacadeResponse set(UserResponse userResponse,

@@ -18,6 +18,8 @@ public interface AccountService {
 
     AccountResponse getByUsername(String username);
 
+    AccountResponse updateAccount(String id , String username, String password);
+
 //    void  update(String id, AccountRequest accountRequest);
 //
 //    Account findUserByUsername(String username);

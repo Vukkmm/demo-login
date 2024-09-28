@@ -64,13 +64,29 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByAccountId(id);
     }
 
+    @Override
+    @Transactional
+    public UserResponse updateUser(String id, String email, String phoneNumber) {
+        log.info("(update) id : {},  email : {}, phoneNumber : {}",
+                id, email, phoneNumber);
 
-    private void find(String id) {
+        User user = find(id);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        userRepository.save(user);
+
+        return getUserResponse(user);
+    }
+
+
+
+    private User find(String id) {
         log.debug("(find) {}", id);
         User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
         if(user.isDeleted()) {
             throw new UserNotFoundException();
         }
+        return  user;
     }
 
     private UserResponse getUserResponse(User user) {

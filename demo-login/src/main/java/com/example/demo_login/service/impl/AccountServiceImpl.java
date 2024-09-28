@@ -63,6 +63,11 @@ public class AccountServiceImpl implements AccountService {
         return mapper.toAccountResponse(account);
     }
 
+    @Override
+    public AccountResponse updateAccount(String id, String username, String password) {
+        return null;
+    }
+
     private void find(String id) {
         log.debug("(find) {}", id);
         Account account = accountRepository.findById(id).orElseThrow(AccountNotFoundException::new);

@@ -50,7 +50,6 @@ public class AddressServiceImpl implements AddressService {
 
 
 
-
     @Override
     public AddressResponse detail(String id) {
         log.info("(detail) id : {}", id);
@@ -58,16 +57,36 @@ public class AddressServiceImpl implements AddressService {
         return addressRepository.detail(id);
     }
 
-    private void find(String id) {
+    @Override
+    public AddressResponse updateAddress(String id, String province, String district, String ward) {
+        log.info("(updateAddress) id : {}, province : {}, district : {}, ward : {}",
+                id, province, district, ward);
+        Address address = find(id);
+        address.setDistrict(district);
+        address.setProvince(province);
+        address.setWard(ward);
+        addressRepository.save(address);
+
+        return getAddressResponse(address);
+    }
+
+    private Address find(String id) {
         log.debug("(find) {}", id);
         Address address = addressRepository.findById(id).orElseThrow(AddressNotFoundException::new);
         if(address.isDeleted()) {
             throw new AddressNotFoundException();
         }
-
+        return  address;
     }
 
-
-
+    private AddressResponse getAddressResponse(Address address) {
+        log.debug("(getAddressResponse) address : {}", address);
+        return new AddressResponse(
+                address.getId(),
+                address.getProvince(),
+                address.getDistrict(),
+                address.getWard()
+        );
+    }
 
 }

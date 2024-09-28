@@ -14,4 +14,6 @@ public interface FullNameService {
     void UpdateByIndex(String id, String firstName, String lastName);
 
     FullNameResponse detail(String id);
+
+    FullNameResponse updateFullName(String id, String firstName, String lastName);
 }

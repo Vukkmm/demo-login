@@ -14,4 +14,6 @@ public interface UserManagementFacade {
     UserFacadeResponse getDetail(String id);
 
     UserFacadeResponse getMyInfo();
+
+    UserFacadeResponse update(String id, UserRequest request);
 }

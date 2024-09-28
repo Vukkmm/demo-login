@@ -22,5 +22,9 @@ public interface UserService {
 
     UserResponse getByAccountId(String id);
 
+    UserResponse updateUser(String id, String email,
+                        String phoneNumber
+                        );
+
 
 }

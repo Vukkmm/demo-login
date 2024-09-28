@@ -13,4 +13,6 @@ public interface AddressService {
     List<AddressResponse> getList();
 
     AddressResponse detail(String id);
+
+    AddressResponse updateAddress(String id, String province, String district, String ward);
 }

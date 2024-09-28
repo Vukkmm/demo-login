@@ -61,12 +61,35 @@ public class FullNameServiceImpl implements FullNameService {
         return fullNameRepository.detail(id);
     }
 
-    private void find(String id) {
+    @Transactional
+    @Override
+    public FullNameResponse updateFullName(String id, String firstName, String lastName) {
+        log.info("(updateFullName) id : {}, firstName : {}, lastName : {}",
+                id, firstName, lastName);
+        FullName fullName = find(id);
+        fullName.setFirstName(firstName);
+        fullName.setLastName(lastName);
+        fullNameRepository.save(fullName);
+
+        return getFullNameResponse(fullName);
+    }
+
+    private FullName find(String id) {
         log.debug("(find) {}", id);
         FullName fullName = fullNameRepository.findById(id).orElseThrow(FullNameNotFoundException::new);
         if(fullName.isDeleted()) {
             throw new FullNameNotFoundException();
         }
+        return fullName;
+    }
+
+    private FullNameResponse getFullNameResponse(FullName fullName) {
+        log.debug("(getFullNameResponse) fullName : {}", fullName);
+        return new FullNameResponse(
+                fullName.getId(),
+                fullName.getFirstName(),
+                fullName.getLastName()
+        );
     }
 
 
