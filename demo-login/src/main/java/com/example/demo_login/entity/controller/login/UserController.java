@@ -79,4 +79,19 @@ public class UserController {
                 userManagementFacade.getMyInfo()
         );
     }
+
+    @PutMapping("{id}")
+    private ResponseGeneral<UserFacadeResponse> update(
+            @Valid @RequestBody UserRequest request,
+            @PathVariable String id,
+            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+    ) {
+        log.info("(update) id : {}, request : {}", id, request);
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(UPDATE_USER, language),
+                userManagementFacade.update(id, request)
+        );
+    }
+
+
 }

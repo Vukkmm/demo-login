@@ -90,14 +90,29 @@ public class UserManagementFacadeImpl implements UserManagementFacade {
         return set(userResponse, accountResponse, addressResponse, fullNameResponse);
     }
 
+    @Transactional
     @Override
     public UserFacadeResponse update(String id, UserRequest request) {
         log.info("(update) request : {}", request);
 
         UserResponse userResponse = userService.updateUser(id, request.getEmail(), request.getPhoneNumber());
+        AccountResponse accountResponse = accountService.updateAccount(
+                                        userResponse.getAccountId(),
+                                        request.getUsername(),
+                                        request.getPassword());
 
+        AddressResponse addressResponse = addressService.updateAddress(
+                                        userResponse.getAddressId(),
+                                        request.getProvince(),
+                                        request.getDistrict(),
+                                        request.getWard());
 
-        return null;
+        FullNameResponse fullNameResponse = fullNameService.updateFullName(
+                                        userResponse.getFullNameId(),
+                                        request.getFirstName(),
+                                        request.getLastName());
+
+        return set(userResponse, accountResponse, addressResponse, fullNameResponse);
     }
 
     private UserFacadeResponse set(UserResponse userResponse,

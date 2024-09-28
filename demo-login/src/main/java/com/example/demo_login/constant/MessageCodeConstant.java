@@ -8,6 +8,8 @@ public class MessageCodeConstant {
 
     public static final String GET_MY_INFO ="com.example.demo-login.controller.login.UserController.getMyInfo";
 
+    public static final String UPDATE_USER ="com.example.demo-login.controller.login.UserController.update";
+
 
     public static final String CREATE_TOKEN = "com.example.demo-login.controller.login.AuthenticationController.createToken";
 

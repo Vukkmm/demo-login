@@ -63,53 +63,37 @@ public class AccountServiceImpl implements AccountService {
         return mapper.toAccountResponse(account);
     }
 
+    @Transactional
     @Override
     public AccountResponse updateAccount(String id, String username, String password) {
-        return null;
+        log.info("(updateAccount) id : {}, username : {}, password : {}",
+                id, username, password);
+        Account account = find(id);
+        account.setUsername(username);
+        account.setPassword(passwordEncoder.encode(password));
+        accountRepository.save(account);
+
+        return getAccountResponse(account);
     }
 
-    private void find(String id) {
+    private Account find(String id) {
         log.debug("(find) {}", id);
         Account account = accountRepository.findById(id).orElseThrow(AccountNotFoundException::new);
         if(account.isDeleted()) {
             throw new AccountNotFoundException();
         }
+        return  account;
     }
 
-
-
-//    @Override
-//    public void update(String id, AccountRequest accountRequest) {
-//        log.info("update id : {}, accountRequest : {}", id, accountRequest);
-//        accountRepository.update(id , accountRequest.getUsername(), accountRequest.getPassword());
-//    }
-//
-//
-//    @Override
-//    public Account findUserByUsername(String username) {
-//        return accountRepository.findAccountByUsername(username);
-//    }
-//
-////    @Override
-////    public AccountInformationBasic findAccountByUserId(String id) {
-////        return accountRepository.findByUserId(id);
-////    }
-//
-//    @Override
-//    public AccountResponse detail(String id) {
-//        log.info("(detail) id : {}", id);
-//        this.find(id);
-//        return accountRepository.detail(id);
-//    }
-//
-//    private Account find(String id) {
-//        log.debug("(find) {}", id);
-//        Account account = accountRepository.findById(id).orElseThrow(AccountNotFoundException::new);
-//        if(account.isDeleted()) {
-//            throw new AccountNotFoundException();
-//        }
-//        return account;
-//    }
+    private AccountResponse getAccountResponse(Account account) {
+        log.debug("(getAccountResponse) account : {}", account);
+        return new AccountResponse(
+                account.getId(),
+                account.getUsername(),
+                account.getPassword(),
+                account.getRoles()
+        );
+    }
 
 
 }
