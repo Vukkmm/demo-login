@@ -50,10 +50,18 @@ public class PermissionController {
         );
     }
 
-//    @DeleteMapping("{name}")
-//    public  ResponseGeneral<?> delete() {
-//
-//    }
+    @DeleteMapping("{name}")
+    public  ResponseGeneral<Boolean> delete(
+            @PathVariable String name,
+            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+
+    ) {
+        log.info("(delete) name : {}", name);
+        service.delete(name);
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(DELETE_PERMISSION, language)
+        );
+    }
 
 
 

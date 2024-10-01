@@ -14,6 +14,9 @@ public class ExceptionCode {
     public static final String FULLNAME_NOT_FOUND_EXCEPTION = "com.example.demo-login.exception.login.FullNameNotFoundException";
     public static final String ACCOUNT_AUTHENTICATED_EXCEPTION = "com.example.demo-login.exception.login.AccountAuthenticatedException";
 
+    public static final String PERMISSION_NOT_FOUND_EXCEPTION = "com.example.demo-login.exception.login.PermissionNotFoundException";
+
+
 
 
 }

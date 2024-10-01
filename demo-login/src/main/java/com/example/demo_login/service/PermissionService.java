@@ -11,4 +11,6 @@ public interface PermissionService {
 
     List<PermissionResponse> getList();
 
+    void delete(String name);
+
 }

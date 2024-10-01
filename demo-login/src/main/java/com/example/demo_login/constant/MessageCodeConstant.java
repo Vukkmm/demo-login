@@ -8,6 +8,8 @@ public class MessageCodeConstant {
 
     public static final String GET_LIST_USER ="com.example.demo-login.controller.login.UserController.getList";
     public static final String GET_LIST_PERMISSION ="com.example.demo-login.controller.login.PermissionController.getList";
+
+    public static final String DELETE_PERMISSION ="com.example.demo-login.controller.login.PermissionController.delete";
     public static final String GET_DETAIL_USER ="com.example.demo-login.controller.login.UserController.getUser";
 
     public static final String GET_MY_INFO ="com.example.demo-login.controller.login.UserController.getMyInfo";
