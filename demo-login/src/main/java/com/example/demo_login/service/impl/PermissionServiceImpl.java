@@ -1,9 +1,7 @@
 package com.example.demo_login.service.impl;
 
 import com.example.demo_login.dto.request.PermissionRequest;
-import com.example.demo_login.dto.response.AccountResponse;
 import com.example.demo_login.dto.response.PermissionResponse;
-import com.example.demo_login.entity.login.Account;
 import com.example.demo_login.entity.login.Permission;
 import com.example.demo_login.exception.login.PermissionNotFoundException;
 import com.example.demo_login.repository.PermissionRepository;

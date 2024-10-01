@@ -12,4 +12,6 @@ public interface RoleService {
 
     List<RoleResponse> getList();
 
+    void delete(String name);
+
 }

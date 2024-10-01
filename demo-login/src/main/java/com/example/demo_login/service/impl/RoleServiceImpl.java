@@ -5,6 +5,8 @@ import com.example.demo_login.dto.response.PermissionResponse;
 import com.example.demo_login.dto.response.RoleResponse;
 import com.example.demo_login.entity.login.Permission;
 import com.example.demo_login.entity.login.Role;
+import com.example.demo_login.exception.login.PermissionNotFoundException;
+import com.example.demo_login.exception.login.RoleNotFoundException;
 import com.example.demo_login.repository.PermissionRepository;
 import com.example.demo_login.repository.RoleRepository;
 import com.example.demo_login.service.RoleService;
@@ -55,6 +57,20 @@ public class RoleServiceImpl implements RoleService {
             roleResponses.add(response);
         }
         return roleResponses;
+    }
+
+    @Override
+    public void delete(String name) {
+        log.info("(delete) name : {}", name);
+        this.find(name);
+        roleRepository.deleteById(name);
+    }
+
+    private  void find(String name) {
+        log.debug("(find) name : {}", name);
+        roleRepository.findById(name).orElseThrow(
+                RoleNotFoundException::new
+        );
     }
 
     private RoleResponse toRoleResponse(Role role) {

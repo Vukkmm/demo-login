@@ -1,12 +1,9 @@
 package com.example.demo_login.controller.login;
 
 import com.example.demo_login.dto.base.ResponseGeneral;
-import com.example.demo_login.dto.request.PermissionRequest;
 import com.example.demo_login.dto.request.RoleRequest;
-import com.example.demo_login.dto.response.PermissionResponse;
 import com.example.demo_login.dto.response.RoleResponse;
 import com.example.demo_login.message.MessageService;
-import com.example.demo_login.service.PermissionService;
 import com.example.demo_login.service.RoleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -52,19 +49,19 @@ public class RoleController {
                 service.getList()
         );
     }
-//
-//    @DeleteMapping("{name}")
-//    public  ResponseGeneral<Boolean> delete(
-//            @PathVariable String name,
-//            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
-//
-//    ) {
-//        log.info("(delete) name : {}", name);
-//        service.delete(name);
-//        return ResponseGeneral.ofSuccess(
-//                messageService.getMessage(DELETE_PERMISSION, language)
-//        );
-//    }
+
+    @DeleteMapping("{name}")
+    public  ResponseGeneral<Boolean> delete(
+            @PathVariable String name,
+            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+
+    ) {
+        log.info("(delete) name : {}", name);
+        service.delete(name);
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(DELETE_ROLE, language)
+        );
+    }
 
 
 
