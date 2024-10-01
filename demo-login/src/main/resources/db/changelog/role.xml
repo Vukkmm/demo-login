@@ -14,7 +14,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="permissions" type="TEXT[]">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
         </createTable>
     </changeSet>

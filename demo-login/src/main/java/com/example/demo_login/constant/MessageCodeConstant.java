@@ -4,6 +4,9 @@ public class MessageCodeConstant {
     public static final String CREATE_USER ="com.example.demo-login.controller.login.UserController.create";
 
     public static final String CREATE_PERMISSION ="com.example.demo-login.controller.login.PermissionController.create";
+    public static final String CREATE_ROLE ="com.example.demo-login.controller.login.RoleController.create";
+
+
 
 
     public static final String GET_LIST_USER ="com.example.demo-login.controller.login.UserController.getList";
