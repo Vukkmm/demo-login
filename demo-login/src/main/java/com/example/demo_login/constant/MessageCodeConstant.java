@@ -3,6 +3,9 @@ package com.example.demo_login.constant;
 public class MessageCodeConstant {
     public static final String CREATE_USER ="com.example.demo-login.controller.login.UserController.create";
 
+    public static final String CREATE_PERMISSION ="com.example.demo-login.controller.login.PermissionController.create";
+
+
     public static final String GET_LIST_USER ="com.example.demo-login.controller.login.UserController.getList";
     public static final String GET_DETAIL_USER ="com.example.demo-login.controller.login.UserController.getUser";
 

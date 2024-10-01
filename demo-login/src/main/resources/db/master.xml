@@ -6,5 +6,7 @@
     <include file="/changelog/address.xml" relativeToChangelogFile="true"/>
     <include file="/changelog/account.xml" relativeToChangelogFile="true"/>
     <include file="/changelog/user.xml" relativeToChangelogFile="true"/>
-
+    <include file="/changelog/permission.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/role.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/role_permission.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

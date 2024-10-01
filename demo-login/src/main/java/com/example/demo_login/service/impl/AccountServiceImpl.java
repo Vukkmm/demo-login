@@ -5,7 +5,6 @@ import com.example.demo_login.dto.response.AccountResponse;
 import com.example.demo_login.entity.login.Account;
 import com.example.demo_login.enums.Role;
 import com.example.demo_login.exception.login.AccountNotFoundException;
-import com.example.demo_login.mapper.UserMapper;
 import com.example.demo_login.repository.AccountRepository;
 import com.example.demo_login.service.AccountService;
 import jakarta.transaction.Transactional;
@@ -23,7 +22,7 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
-    private final UserMapper mapper;
+
 
 
     @Transactional
@@ -43,7 +42,7 @@ public class AccountServiceImpl implements AccountService {
         List<AccountResponse> listResponse = new ArrayList<>();
         for (Account account : list
         ) {
-            AccountResponse response = mapper.toAccountResponse(account);
+            AccountResponse response = getAccountResponse(account);
             listResponse.add(response);
         }
         return listResponse;
@@ -60,7 +59,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountResponse getByUsername(String username) {
         log.info("(getByUsername) username : {}", username);
         Account account = accountRepository.findAccountByUsername(username);
-        return mapper.toAccountResponse(account);
+        return getAccountResponse(account);
     }
 
     @Transactional

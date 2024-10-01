@@ -1,4 +1,4 @@
-package com.example.demo_login.entity.controller.advice;
+package com.example.demo_login.controller.advice;
 
 import com.example.demo_login.dto.base.ResponseGeneral;
 import com.example.demo_login.exception.base.BadRequestException;

@@ -4,7 +4,6 @@ package com.example.demo_login.service.impl;
 import com.example.demo_login.dto.response.AddressResponse;
 import com.example.demo_login.entity.login.Address;
 import com.example.demo_login.exception.login.AddressNotFoundException;
-import com.example.demo_login.mapper.UserMapper;
 import com.example.demo_login.repository.AddressRepository;
 import com.example.demo_login.service.AddressService;
 import jakarta.transaction.Transactional;
@@ -20,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
     private final AddressRepository addressRepository;
-    private final UserMapper mapper;
 
     @Transactional
     @Override
@@ -42,7 +40,7 @@ public class AddressServiceImpl implements AddressService {
         List<AddressResponse> listResponse = new ArrayList<>();
         for (Address i  : list
         ) {
-            AddressResponse response = mapper.toAddressResponse(i);
+            AddressResponse response = getAddressResponse(i);
             listResponse.add(response);
         }
         return listResponse;

@@ -27,6 +27,7 @@ public class User extends BaseEntityWithUpdater {
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
+
     public User(String email, String phoneNumber, String accountId, String addressId, String fullNameId) {
         this.email = email;
         this.phoneNumber = phoneNumber;

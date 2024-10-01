@@ -4,7 +4,7 @@ package com.example.demo_login.service.impl;
 import com.example.demo_login.dto.response.FullNameResponse;
 import com.example.demo_login.entity.login.FullName;
 import com.example.demo_login.exception.login.FullNameNotFoundException;
-import com.example.demo_login.mapper.UserMapper;
+
 import com.example.demo_login.repository.FullNameRepository;
 import com.example.demo_login.service.FullNameService;
 import jakarta.transaction.Transactional;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FullNameServiceImpl implements FullNameService {
     private final FullNameRepository fullNameRepository;
-    private final UserMapper mapper;
+
 
     @Transactional
     @Override
@@ -42,7 +42,7 @@ public class FullNameServiceImpl implements FullNameService {
         List<FullNameResponse> listResponse = new ArrayList<>();
         for (FullName i : list
         ) {
-            FullNameResponse response = mapper.toFullNameResponse(i);
+            FullNameResponse response = getFullNameResponse(i);
             listResponse.add(response);
         }
         return listResponse;    }

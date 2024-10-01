@@ -1,4 +1,4 @@
-package com.example.demo_login.entity.controller.login;
+package com.example.demo_login.controller.login;
 
 import com.example.demo_login.dto.base.ResponseGeneral;
 import com.example.demo_login.dto.request.UserRequest;

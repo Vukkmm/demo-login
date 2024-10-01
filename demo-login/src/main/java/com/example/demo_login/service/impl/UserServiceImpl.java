@@ -3,7 +3,6 @@ package com.example.demo_login.service.impl;
 import com.example.demo_login.dto.response.UserResponse;
 import com.example.demo_login.entity.login.User;
 import com.example.demo_login.exception.login.UserNotFoundException;
-import com.example.demo_login.mapper.UserMapper;
 import com.example.demo_login.repository.UserRepository;
 import com.example.demo_login.service.UserService;
 import jakarta.transaction.Transactional;
@@ -19,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
+
 
     @Override
     @Transactional
@@ -45,7 +44,7 @@ public class UserServiceImpl implements UserService {
         List<UserResponse> listResponse = new ArrayList<>();
         for (User user : list
              ) {
-            UserResponse response = userMapper.toUserResponse(user);
+            UserResponse response = getUserResponse(user);
             listResponse.add(response);
         }
         return listResponse;
