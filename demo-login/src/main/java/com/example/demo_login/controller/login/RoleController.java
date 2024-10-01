@@ -42,16 +42,16 @@ public class RoleController {
         );
     }
 
-//    @GetMapping
-//    public  ResponseGeneral<List<RoleResponse>> getList(
-//            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
-//    ) {
-//        log.info("(getList");
-//        return ResponseGeneral.ofSuccess(
-//                messageService.getMessage(GET_LIST_PERMISSION, language),
-//                service.getList()
-//        );
-//    }
+    @GetMapping
+    public  ResponseGeneral<List<RoleResponse>> getList(
+            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+    ) {
+        log.info("(getList");
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(GET_LIST_ROLE, language),
+                service.getList()
+        );
+    }
 //
 //    @DeleteMapping("{name}")
 //    public  ResponseGeneral<Boolean> delete(

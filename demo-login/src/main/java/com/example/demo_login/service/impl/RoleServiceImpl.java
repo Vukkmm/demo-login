@@ -8,10 +8,12 @@ import com.example.demo_login.entity.login.Role;
 import com.example.demo_login.repository.PermissionRepository;
 import com.example.demo_login.repository.RoleRepository;
 import com.example.demo_login.service.RoleService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +28,7 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
+    @Transactional
     public RoleResponse create(RoleRequest request) {
         log.info("(create) request : {}", request);
 
@@ -39,6 +42,19 @@ public class RoleServiceImpl implements RoleService {
         roleRepository.save(role);
 
         return toRoleResponse(role);
+    }
+
+    @Override
+    public List<RoleResponse> getList() {
+        log.info("(getList)");
+        List<Role> list = roleRepository.findAll();
+        List<RoleResponse> roleResponses = new ArrayList<>();
+        for (Role r : list
+             ) {
+            RoleResponse response = toRoleResponse(r);
+            roleResponses.add(response);
+        }
+        return roleResponses;
     }
 
     private RoleResponse toRoleResponse(Role role) {
