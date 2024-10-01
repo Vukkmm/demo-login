@@ -11,9 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.example.demo_login.constant.CommonConstant.DEFAULT_LANGUAGE;
 import static com.example.demo_login.constant.CommonConstant.LANGUAGE;
-import static com.example.demo_login.constant.MessageCodeConstant.CREATE_PERMISSION;
+import static com.example.demo_login.constant.MessageCodeConstant.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -36,5 +38,23 @@ public class PermissionController {
                 service.create(request)
         );
     }
+
+    @GetMapping
+    public  ResponseGeneral<List<PermissionResponse>> getList(
+            @RequestHeader(name = LANGUAGE, defaultValue = DEFAULT_LANGUAGE) String language
+    ) {
+        log.info("(getList");
+        return ResponseGeneral.ofSuccess(
+                messageService.getMessage(GET_LIST_PERMISSION, language),
+                service.getList()
+        );
+    }
+
+//    @DeleteMapping("{name}")
+//    public  ResponseGeneral<?> delete() {
+//
+//    }
+
+
 
 }
