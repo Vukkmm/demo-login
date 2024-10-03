@@ -9,4 +9,5 @@
     <include file="/changelog/permission.xml" relativeToChangelogFile="true"/>
     <include file="/changelog/role.xml" relativeToChangelogFile="true"/>
     <include file="/changelog/role_permission.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/account_role.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

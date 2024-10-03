@@ -96,6 +96,8 @@ public class ExceptionHandlerAdvice {
     }
 
 
+
+
     /**
      * Handles generic RuntimeExceptions. It returns a standardized response with an internal server error status.
      *

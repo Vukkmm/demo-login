@@ -80,7 +80,7 @@ public class RoleServiceImpl implements RoleService {
         Set<PermissionResponse> set = new HashSet<>();
         for (Permission p : response
              ) {
-            PermissionResponse permission = new PermissionResponse(p.getName(), role.getDescription());
+            PermissionResponse permission = new PermissionResponse(p.getName(), p.getDescription());
             set.add(permission);
         }
         return new RoleResponse(

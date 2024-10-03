@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+    @NoArgsConstructor
 @Entity
 @Table(name = "roles")
 @Builder
@@ -29,4 +29,8 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "permission_name")
     )
     private Set<Permission> permissions;
+
+    public Role(String name) {
+        this.name = name;
+    }
 }

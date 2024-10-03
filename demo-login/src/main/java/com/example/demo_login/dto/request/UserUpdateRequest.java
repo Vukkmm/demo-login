@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor(staticName = "of")
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserRequest {
+public class UserUpdateRequest {
     String email;
     String phoneNumber;
     @Size(min = 6, max = 50, message = "Username must be between 3 and 50 characters")
@@ -25,5 +25,6 @@ public class UserRequest {
     String ward;
     String firstName;
     String lastName;
+    List<String> roles;
 
 }

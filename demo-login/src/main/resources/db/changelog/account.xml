@@ -15,8 +15,8 @@
             <column name="password" type="VARCHAR(200)">
                 <constraints nullable="false" />
             </column>
-            <column name="role" type="VARCHAR(20)">
-                <constraints nullable="false" />
+            <column name="roles" type="TEXT[]">
+                <constraints nullable="true" />
             </column>
             <column name="is_deleted" type="BOOLEAN" defaultValueBoolean="false"/>
         </createTable>

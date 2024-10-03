@@ -1,7 +1,5 @@
 package com.example.demo_login.repository;
 
-import com.example.demo_login.dto.request.FullNameRequest;
-import com.example.demo_login.dto.response.AccountResponse;
 import com.example.demo_login.dto.response.FullNameResponse;
 import com.example.demo_login.entity.login.FullName;
 import jakarta.transaction.Transactional;

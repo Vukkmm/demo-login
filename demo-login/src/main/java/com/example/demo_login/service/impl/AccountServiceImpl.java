@@ -3,9 +3,11 @@ package com.example.demo_login.service.impl;
 
 import com.example.demo_login.dto.response.AccountResponse;
 import com.example.demo_login.entity.login.Account;
-import com.example.demo_login.enums.Role;
+import com.example.demo_login.entity.login.Role;
+import com.example.demo_login.enums.RoleUser;
 import com.example.demo_login.exception.login.AccountNotFoundException;
 import com.example.demo_login.repository.AccountRepository;
+import com.example.demo_login.repository.RoleRepository;
 import com.example.demo_login.service.AccountService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -22,17 +26,22 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
 
 
     @Transactional
     @Override
-    public AccountResponse create(String username, String password) {
+    public AccountResponse create(String username, String password  ) {
         log.info("(create) username : {}, password : {}",username, password);
-        Account account = new Account(username, passwordEncoder.encode(password));
-        account.setRoles(Role.USER.name());
+
+        HashSet<String> roles = new HashSet<>();
+        roles.add(RoleUser.USER.name());
+
+        Account account = new Account(username, password, roles);
+
         accountRepository.save(account);
-        return new AccountResponse(account.getId(), account.getUsername(), account.getPassword(),account.getRoles());
+        return new AccountResponse(account.getId(), account.getUsername(), account.getPassword(),roles);
     }
 
     @Override
@@ -42,6 +51,9 @@ public class AccountServiceImpl implements AccountService {
         List<AccountResponse> listResponse = new ArrayList<>();
         for (Account account : list
         ) {
+
+            var listRole = roleRepository.findAllById(account.getRoles());
+
             AccountResponse response = getAccountResponse(account);
             listResponse.add(response);
         }
@@ -51,8 +63,8 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountResponse detail(String id) {
         log.info("(detail) id : {}", id);
-        this.find(id);
-        return accountRepository.detail(id);
+        Account account = this.find(id);
+        return new AccountResponse(account.getId(), account.getUsername(), account.getPassword(), account.getRoles());
     }
 
     @Override
@@ -86,6 +98,7 @@ public class AccountServiceImpl implements AccountService {
 
     private AccountResponse getAccountResponse(Account account) {
         log.debug("(getAccountResponse) account : {}", account);
+//        Set<RoleResponse> responses = getSetRoleRepository(listRoles);
         return new AccountResponse(
                 account.getId(),
                 account.getUsername(),
@@ -93,6 +106,31 @@ public class AccountServiceImpl implements AccountService {
                 account.getRoles()
         );
     }
+
+//    private Set<RoleResponse> getSetRoleRepository (Set<Role> listRoles) {
+//        var set = new HashSet<>(listRoles);
+//
+//        Set<RoleResponse> roleResponseSet = new HashSet<>();
+//
+//        for (Role r : set
+//             ) {
+//
+//            var setPermission = r.getPermissions();
+//            Set<PermissionResponse> permissionResponseSet = new HashSet<>();
+//
+//            for (Permission p : setPermission
+//            ) {
+//                PermissionResponse permission = new PermissionResponse(p.getName(), p.getDescription());
+//                permissionResponseSet.add(permission);
+//            }
+//
+//            RoleResponse roleResponse = new RoleResponse(r.getName(), r.getDescription(),
+//                    permissionResponseSet);
+//
+//            roleResponseSet.add(roleResponse);
+//        }
+//       return  roleResponseSet;
+//    }
 
 
 }
